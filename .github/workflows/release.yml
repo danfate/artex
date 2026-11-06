@@ -2,6 +2,7 @@ name: release
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
 
 permissions:
   contents: write # 创建 Release 需要
@@ -78,6 +79,7 @@ jobs:
 
   # ③ 汇总所有 zip → 创建 GitHub Release
   release:
+    if: github.ref_type == 'tag'
     needs: binaries
     runs-on: ubuntu-latest
     steps:

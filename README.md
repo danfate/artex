@@ -93,7 +93,7 @@ docker compose up -d          # 拉取 ghcr.io/danfate/artex 镜像 + postgres
 
 镜像已含常用工具（ripgrep/curl/vim/npm/nmap…）；`./skills` 与 `./data` 以绑定挂载持久化。
 
-推送 `v*` Git 标签后，GitHub Actions 会将 amd64/arm64 镜像发布到当前仓库的 GHCR，提供对应版本标签和 `latest`，无需配置 Docker Hub 凭据。首次发布后，如需免登录拉取，请在 GitHub Packages 中将镜像包的可见性设为 Public。
+推送 `v*` Git 标签后，GitHub Actions 会将 amd64/arm64 镜像发布到当前仓库的 GHCR，提供对应版本标签和 `latest`，无需配置 Docker Hub 凭据。也可在 Actions 的 `release` 工作流中手动触发构建；手动构建分支时只发布 `latest` 镜像，不创建 GitHub Release。首次发布后，如需免登录拉取，请在 GitHub Packages 中将镜像包的可见性设为 Public。
 
 远程 MCP 可在系统设置中选择 `http`（Streamable HTTP）或 `sse`（旧版 SSE）。
 旧版 SSE 服务通常使用 `GET /sse` 建立事件流，再通过服务返回的
