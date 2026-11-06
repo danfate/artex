@@ -87,11 +87,13 @@ cd ARTEX
 git clone https://github.com/Hinln/ARTEX.git
 cd ARTEX
 cp .env.example .env          # 填 POSTGRES_PASSWORD、可选 ANTHROPIC_API_KEY
-docker compose up -d          # 拉取 autumn27/artex 镜像 + postgres
+docker compose up -d          # 拉取 ghcr.io/danfate/artex 镜像 + postgres
 # → http://localhost:8787
 ```
 
 镜像已含常用工具（ripgrep/curl/vim/npm/nmap…）；`./skills` 与 `./data` 以绑定挂载持久化。
+
+推送 `v*` Git 标签后，GitHub Actions 会将 amd64/arm64 镜像发布到当前仓库的 GHCR，提供对应版本标签和 `latest`，无需配置 Docker Hub 凭据。首次发布后，如需免登录拉取，请在 GitHub Packages 中将镜像包的可见性设为 Public。
 
 远程 MCP 可在系统设置中选择 `http`（Streamable HTTP）或 `sse`（旧版 SSE）。
 旧版 SSE 服务通常使用 `GET /sse` 建立事件流，再通过服务返回的
